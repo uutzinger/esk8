@@ -276,10 +276,19 @@ Silicone insulated wire with 200C temperature rating.
 | 8 | 3.26| 8.37| 2.1| 209| 180| 100|  
 | 10| 2.59| 5.26| 3.3| 130| 120|  75|  250
 | 12| 2.05| 3.31| 5.2|  75|  70|  55|  160
+| 14| 1.63| 2.08| 8.3|  51|
+| 16| 1.29| 1.31| 13.2| 32|
+| 19| 0.91| 0.65|26.4|  16|
+| 22| 0.64| 0.32|  53| 7.8|
+| 26| 0.41| 0.13| 134| 3.2|
+| 28| 0.32| 0.08| 213| 1.9|
 
 Simple approximation for current is **A[mm2]x25**. A slighltly better one **(D[mm]x39)^2 / 80**
 
 Single core to multicore up to 0.33..0.5 factor current reduction  
+
+Resistivity of Copper 1.68 10^-8 
+Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7
 
 ### Connectors 
 -----
@@ -329,3 +338,41 @@ For 13S you need a 54.6V charger.
 * Benchwheel.com Remote & Receiver 2.4 GHz $54
 * [DIYeboard](https://diyelectricskateboard.com/collections/remote-controller) $46
 * Same boards are available at [AliExress 1](https://www.aliexpress.com/item/4000241274377.html?spm=a2g0o.cart.0.0.5aeb3c00myg8ZA&mp=1), [AliExpress 2](https://www.aliexpress.com/item/32678995218.html?spm=a2g0o.cart.0.0.153c3c00tRosU8&mp=1)
+
+## Deck
+https://www.roarockit.com/skateboard-building/
+Bamboo 10.5x46 1/16 best elasticity, fragile until laminated
+Mable 12x47 1/16 denser and strong
+Birch 12x47 1/16 light and flexible
+7-9 layers
+
+https://www.woodcraft.com/products/rock-hard-maple-skatebaord-veneers-longboard-style-12-x-48-7-mmply7.7inches
+Maple 12x48
+
+Canadian Hard Maple
+
+10mill = 1/100inch
+
+Polycarb
+1/16 24x48
+1/8 24x48 $24
+Temp Melt 280-320, Form 30-80
+
+Foamboard 3mm
+12x12 Expanded PVC
+170-190 30-60
+
+Polypropylene 
+200-280 30-80
+
+Polystyrene Foam (white packaging block)
+170-280 30-60
+
+PVD Shring Tubing
+length 3x65mm = 195mm 7.7inches pluse side 20+20= 240mm
+width 6x18mm = 108mm 4.25 inches plus side 20 = 130mm
+
+150mm shrink tubing clear PVC
+
+Neoperene Rubber Sheets
+1/16 1'x12'

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="BatteryBox.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 660.4 355.60001"
+   height="14in"
+   width="26in">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     inkscape:window-maximized="1"
+     inkscape:window-y="-6"
+     inkscape:window-x="-6"
+     inkscape:window-height="1018"
+     inkscape:window-width="1920"
+     units="in"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="in"
+     inkscape:cy="589.61976"
+     inkscape:cx="236.75523"
+     inkscape:zoom="0.7"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <path
+       transform="scale(0.26458334)"
+       d="M 238.68945 125.75977 L 237.15039 222.40234 L 247.81055 222.40234 C 254.4585 222.40234 259.81055 227.75434 259.81055 234.40234 C 259.81055 239.65058 256.46847 244.07774 251.79297 245.71484 L 237.14258 245.71484 L 237.14258 262.71875 C 235.50268 267.38906 231.0785 270.72656 225.83398 270.72656 C 219.18598 270.72656 213.83398 265.37449 213.83398 258.72656 L 213.83398 246.13281 L 117.19141 247.6875 L 117.19141 339.84766 L 213.83398 341.38672 L 213.83398 330.72656 C 213.83398 324.07868 219.18599 318.72656 225.83398 318.72656 C 231.0785 318.72656 235.50268 322.06411 237.14258 326.73438 L 237.14258 358.73828 C 235.50261 363.40846 231.07841 366.74609 225.83398 366.74609 C 219.18598 366.74609 213.83398 361.39402 213.83398 354.74609 L 213.83398 342.15234 L 117.19141 343.70703 L 117.19141 435.86523 L 213.83398 437.4043 L 213.83398 426.74414 C 213.83398 420.09625 219.18599 414.74414 225.83398 414.74414 C 231.07841 414.74414 235.50261 418.08183 237.14258 422.75195 L 237.14258 1109.7148 L 2253.1426 1109.7148 L 2253.1426 245.71484 L 411.80469 245.71484 C 407.12927 244.07768 403.78711 239.65049 403.78711 234.40234 C 403.78711 227.75434 409.13915 222.40234 415.78711 222.40234 L 428.38086 222.40234 L 426.82617 125.75977 L 334.66602 125.75977 L 333.12695 222.40234 L 343.78711 222.40234 C 350.43506 222.40234 355.78711 227.75434 355.78711 234.40234 C 355.78711 239.65058 352.44504 244.07774 347.76953 245.71484 L 315.82812 245.71484 C 311.15262 244.07774 307.81055 239.65058 307.81055 234.40234 C 307.81055 227.75434 313.16258 222.40234 319.81055 222.40234 L 332.4043 222.40234 L 330.84961 125.75977 L 238.68945 125.75977 z "
+       style="opacity:0.996458;fill:none;stroke:#000000;stroke-width:0.96;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect833" />
+    <path
+       id="path893"
+       style="opacity:0.996458;fill:none;stroke:#000000;stroke-width:0.254;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 113.94725,33.274 -0.40721,25.570016 h 2.82048 c 1.75893,0 3.17498,1.41605 3.17498,3.175 0,1.400347 -0.89879,2.580823 -2.15231,3.004983 h 17.00455 c -1.25353,-0.42416 -2.15232,-1.604636 -2.15232,-3.004983 0,-1.75895 1.41604,-3.175 3.17498,-3.175 h 3.33208 L 138.33114,33.274 Z" />
+    <path
+       d="m 31.006895,140.72275 25.570016,0.40721 v -2.82047 c 0,-1.75892 1.41605,-3.17496 3.174999,-3.17496 1.400347,0 2.580823,0.89879 3.004983,2.1523 v -17.00446 c -0.42416,1.25353 -1.604636,2.15231 -3.004983,2.15231 -1.75895,0 -3.175,-1.41603 -3.175,-3.17496 v -3.33206 L 31.006895,116.339 Z"
+       style="opacity:0.996458;fill:none;stroke:#000000;stroke-width:0.254;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path902" />
+  </g>
+</svg>
