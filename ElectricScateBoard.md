@@ -13,6 +13,20 @@ Torque Calculation: Troque [Nm] = 3/2/(sqrt(3)*(1/60)*2*3.141) * MaxCurrent / Kv
 * Turnigy SK8: 8.3*100/192 = 4Nm
 * Turnigy SK3: 8.3*80/192 = 3.4Nm
 
+[VSEC calcuator](https://vesc-project.com/calculators)
+Tire diameter 160  
+Motor pulley 16  
+Slave 62  
+MotorKV sk3 c6374 192  
+Serial Cells 12  
+Parallel Cell 6  
+Battery 35A 2600mAh  
+Weigth 130kg  
+100% throttle 0% climb 65Kmh 12minute drive  (40miles per hour)
+100% throttle 10% climb 65Kmh 7minute drive  
+40% throttle 0% climb 25Kmh 127minute drive  
+40% throttle 10% climb 25Kmh 30minute drive  
+
 ## Websites and Resources
 * Trampa Boards https://trampaboards.com/ many components, 406mm tilted end boards
 * Haggy Board https://haggyboard.com 340mm/210 flat board
@@ -35,10 +49,10 @@ https://electric-skateboard.builders/
 The design should be 40A sustainedand and 100A for 5-10 sec per motor. For two motors that is 80A sustained and 200A max current.
 
 **ESC**  
-ODrive has 120A peak per motor and 40A will increase temperature of controller to 70-80C. The 6374 motors have max current of 70-100A. 
+ODrive: 56V, 120A peak per motor and 40A will increase temperature of controller to 70-80C. The 6374 motors have max current of 70-100A. 
 
 **Motors**  
-192KV Turnigy SK8 
+192KV Turnigy SK8: 100A, 12cells, 4400W 
 
 **Trucks**  
 Kingpin type from eskatebuilder, 370mm with montor mount 64mm, 
@@ -69,6 +83,24 @@ Alixpress 2.4GHz with receiver
 **Batteries**  
 78 x 18650 Molicel P26A, 2600mAh 35A
 Nickel strips
+13S6P
+
+**Charger**  
+WATE 13S 54.6V 7A Charger 48V, Aliexpress
+
+**Deck**  
+Aluminum Frame  
+
+Bottom plate Aluminum  
+Top plate Aluminum  
+Cover plate Polycarbonate  
+[onShape Design](https://cad.onshape.com/documents/780cf0791f6ea0020182cc37/w/52c93acc8a7040ecf66f8b0d/e/6630977b7a9cc9a77ba8d62b)
+3/4 x 1/5 inch square tubing:
+ - 29.75in x2 (side)
+ - 6.5in x1 (battery separator)
+ - 8.5in x2  (prependituclar front back)
+ - 6.75in x4 (longitudinal front back)
+ - 2.5in x8  (front back and fill ins)
 
 ---
 ## Motors
@@ -356,6 +388,7 @@ Canadian Hard Maple
 Polycarb
 1/16 24x48
 1/8 24x48 $24
+1/8 12x24
 Temp Melt 280-320, Form 30-80
 
 Foamboard 3mm
@@ -368,11 +401,17 @@ Polypropylene
 Polystyrene Foam (white packaging block)
 170-280 30-60
 
-PVD Shring Tubing
-length 3x65mm = 195mm 7.7inches pluse side 20+20= 240mm
-width 6x18mm = 108mm 4.25 inches plus side 20 = 130mm
+PVD Shring Tubing  
+length 3x65mm = 195mm 7.7inches pluse side 20+20= 240mm  
 
-150mm shrink tubing clear PVC
+Battery  
+length 3x65mm = 195mm 7.7" pluse side 20+20= 240mm  
+width 6x18mm = 108mm 4.25 inches plus side 20 = 130mm  
+height total = 9"  
+length total 4x108 + 65 + BMS + Odrive 2"  = 26"  
+  
+150mm shrink tubing clear PVC  
 
-Neoperene Rubber Sheets
-1/16 1'x12'
+Neoperene Rubber Sheets  
+1/16 1'x12'  
+
