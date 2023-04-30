@@ -15,13 +15,94 @@
 # e.g. pollerObject.register(monitor, select.POLLIN)
 #####################################################################
 
+DISPLAY = True # Will display speed in figure
+
 # Imports
 import functools
 import pyudev
 import select
 import time
 import logging
+import matplotlib.pyplot as plt
 from evdev import InputDevice, categorize, ecodes
+
+#####################################################################
+# Utility functions
+#####################################################################
+def clamp(val: cython.double, smallest: cython.double, largest: cython.double): 
+    '''
+    Clip val to [smallest, largest]
+    '''
+    if val < smallest: return smallest
+    if val > largest: return largest
+    return val
+
+def handleEvent(event=None, tank=None):
+    # Gamepad Keys
+    #####################################################################
+    # Joystick
+    # REL_X         -7(left) ... +7(right)
+    # REL_Y         -7(up)   ... +7(down)
+    # BTN_LEFT       pushed value 1, released 0, large front button and also button A
+    # Keys
+    # KEY_ESC        pushed value 1, continuous 2, released 0 Second button and button B
+    # KEY_VOLUMEUP   pushed value 1, continuous 2, released 0 Button C
+    # KEY_VOLUMEDOWN pushed value 1, continuous 2, released 0 Button D
+    #####################################################################
+    # event.type
+    # event.code
+    # event.value
+    #####################################################
+    # Example of input events for joystick, key and button
+    #
+    # Each joystick move gives both X and Y event
+    # Type: EV_REL, Code: REL_X, Value: 2
+    # Type: EV_REL, Code: REL_Y, Value: 1
+    # Type: EV_SYN, Code: SYN_REPORT, Value: 0
+    #
+    # KEY value can be 1 for pushed, 2 for continuously pushed, 0 for released
+    # Type: EV_MSC, Code: MSC_SCAN, Value: 786665
+    # Type: EV_KEY, Code: KEY_VOLUMEUP, Value: 1
+    # Type: EV_SYN, Code: SYN_REPORT, Value: 0
+    #
+    # Type: EV_MSC, Code: MSC_SCAN, Value: 589825
+    # Type: EV_KEY, Code: ['BTN_LEFT', 'BTN_MOUSE'], Value: 1
+    # Type: EV_SYN, Code: SYN_REPORT, Value: 0
+    #####################################################
+    if event is not None:
+        if event.type == ecodes.EV_REL:
+            if event.code == ecodes.ecodes['REL_X']:
+                if tank is not None:
+                    # steer left or right
+                    tank.update(REL_X=event.value)
+                    pass
+            elif event.code == ecodes.ecodes['REL_Y']:
+                if tank is not None:
+                    # go faster or slower
+                    tank.update(REL_Y=event.value)
+        elif event.type == ecodes.EV_KEY:
+            if event.code == ecodes.ecodes['KEY_ESC']:
+                # steer center
+                if tank is not None:
+                    tank.center()
+            elif event.code == ecodes.ecodes['KEY_VOLUMEUP']:
+                # Show battery
+                pass # button D was selected
+            elif event.code == ecodes.ecodes['KEY_VOLUMEDOWN']:
+                # Show lights/speed
+                pass # button C was selected
+        elif event.type == ecodes.EV_BTN:
+            if event.code == ecodes.ecodes['BTN_LEFT']:
+                # toggles turbo / eco mode
+                # Need to check for value going to 1 and then to 0 and then changing turbo
+                if tank is not None:
+                    tank.turbo()
+        else:
+            pass
+
+#####################################################################
+# Classes
+#####################################################################
 
 # Keep  track of bluetooth device
 class BTDevice(object):
@@ -32,11 +113,92 @@ class BTDevice(object):
         self.poller  = poller    
         self.timeout = timeout  # poller timeout in milliseconds
 
+class TankDrive(object):
+        ###########
+    # Tank Drive
+    # speed: speed base 
+    # left_right:  left versus right -1..+1
+    # speed_Left:  set speed for left motor
+    # speed_Right: set speed for right motor
+    ###########
+
+    def __init__(self):
+        self.MAXUPDOWN     =  7 # max joystick value, needs to be positive
+        self.MINUPDOWN     = -7 # min joystick value, needs to be negative
+        self.MAXLR         =  7 
+        self.MINLR         = -7 
+        self.SENS          = 1.5 # non linear joystick sensitivity
+        self.MAX_SPEED     =  30 # max speed value
+        self.MIN_SPEED     = -30
+        self.MAX_RATIO     =  1.
+        self.MIN_RATIO     = -1.
+        self.SPEED_GAIN    = 0.1 # how fast to increase/decrease speed
+        self.RATIO_GAIN    = 0.1 # how fast to steer
+        self.speed         = 0   # set speed to zero
+        self.reatio        = 0   # set steering straight
+        self.speed_left    = 0   # set left & right zero
+        self.speed_right   = 0
+        self.eco           = True
+
+    def update(self, REL_X=0, REL_Y=0):
+        # Joystick conversion
+        # Will create values between -1 and 1
+        # non linear adjustments
+
+        if REL_Y < 0:
+            _up_down    = - (REL_Y/MINUPDOWN)^SENS # -1..1
+        else: 
+            _up_down    =   (REL_Y/MAXUPDOWN)^SENS
+        if REL_X < 0:
+            _left_right = - (REL_X/MINLR)^SENS     # -1..1
+        else:
+            _left_right =   (REL_X/MAXLR)^SENS     # -1..1
+
+        # Set speed will be adjusted incrementally by joystick value
+        # Speed is clamped
+        self.speed   += (self.SPEED_GAIN * _up_down)
+        self.speed = clamp(self.speed, self.MIN_SPEED, self.MAX_SPEED)
+
+        # Left-Right ratio
+        self.ratio  += (self.RATIO_GAIN * left_right)
+        self.ratio = clamp(self.ratio, self.MIN_RATIO, self.MAX_RATIO)
+
+        # Left versus right motor
+        # if ratio is -1 left motor is 0 and right motor is 2 * speed
+        self.speed_left  = self.speed + self.speed *self.ratio
+        self.speed_right = self.speed - self.speed *self.ratio
+
+    def turbo(self):
+        if self.eco:
+            self.eco=True
+            self.SPEED_GAIN = 0.2
+        else:
+            self.eco=False
+            self.SPEED_GAIN = 0.1
+
+    def center(self):
+        self.ratio = 0
+
+#####################################################################
+# Setup
+#####################################################################
+
 # Input devices to be watched
 # Keypad and Joystick
 input_pollInterval = 0.001 # how long to wait for next poll
 joystick = BTDevice(name="Umido ESoul DH2 Mouse",    poller=select.poll(), timeout = 5)
 keyboard = BTDevice(name="Umido ESoul DH2 Keyboard", poller=select.poll(), timeout = 5)
+
+# Tank Drive
+tank = TankDrive()
+
+# Matplot Figure
+if DISPLAY:
+    fig = plt.figure()    
+    fig.title('Speed')
+    fig.xlabel('Motor')
+    fig.ylabel('Speed')
+    fig.ion()
 
 # UDEV Monitor
 # Connection and disconnection monitor
@@ -157,6 +319,7 @@ while True:
                     for e in joystick.device.read():
                         # Convert code, type in names
                         print("Type: {}, Code: {}, Value: {}".format(ecodes.EV[e.type], ecodes.bytype[e.type][e.code], e.value))
+                        handleEvent(event=e, tank=tank)
             elif event & select.POLLHUP:
                 logger.log(logging.INFO, "Joystick disconnected.")
                 joystick.poller.unregister(joystick.device)
@@ -168,146 +331,21 @@ while True:
                 if keyboard.device is not None:
                     for e in keyboard.device.read():
                         print("Type: {}, Code: {}, Value: {}".format(ecodes.EV[e.type], ecodes.bytype[e.type][e.code], e.value))
+                        handleEvent(event=e, tank=tank)
             elif event & select.POLLHUP:
                 logger.log(logging.INFO, "Keyboard disconnected.")
                 keyboard.poller.unregister(keyboard.device)
                 keyboard.device = None
 
-def clamp(val: cython.double, smallest: cython.double, largest: cython.double): 
-    '''
-    Clip val to [smallest, largest]
-    '''
-    if val < smallest: return smallest
-    if val > largest: return largest
-    return val
 
-# Also need to make class to keep track of when buttons and keys are released
-#
-def handleEvent(event=None, tank=None):
-    # Gamepad Keys
-    #####################################################################
-    # Joystick
-    # REL_X         -7(left) ... +7(right)
-    # REL_Y         -7(up)   ... +7(down)
-    # BTN_LEFT       pushed value 1, released 0, large front button and also button A
-    # Keys
-    # KEY_ESC        pushed value 1, continuous 2, released 0 Second button and button B
-    # KEY_VOLUMEUP   pushed value 1, continuous 2, released 0 Button C
-    # KEY_VOLUMEDOWN pushed value 1, continuous 2, released 0 Button D
-    #####################################################################
-    # event.type
-    # event.code
-    # event.value
-    #####################################################
-    # Example of input events for joystick, key and button
-    #
-    # Ech joysitck move gives both X and Y event
-    # Type: EV_REL, Code: REL_X, Value: 2
-    # Type: EV_REL, Code: REL_Y, Value: 1
-    # Type: EV_SYN, Code: SYN_REPORT, Value: 0
-    #
-    # KEY value can be 1 for pushed, 2 for continously pushed, 0 for released
-    # Type: EV_MSC, Code: MSC_SCAN, Value: 786665
-    # Type: EV_KEY, Code: KEY_VOLUMEUP, Value: 1
-    # Type: EV_SYN, Code: SYN_REPORT, Value: 0
-    #
-    # Type: EV_MSC, Code: MSC_SCAN, Value: 589825
-    # Type: EV_KEY, Code: ['BTN_LEFT', 'BTN_MOUSE'], Value: 1
-    # Type: EV_SYN, Code: SYN_REPORT, Value: 0
-    #####################################################
-    if event is not None:
-        if event.type == ecodes.EV_REL:
-            if event.code == ecodes.ecodes['REL_X']:
-                if tank is not None:
-                    # steer left or right
-                    tank.update(REL_X=event.value)
-                    pass
-            elif event.code == ecodes.ecodes['REL_Y']:
-                if tank is not Nonde:
-                    # go faster or slower
-                    tank.update(REL_Y=event.value)
-        elif event.type == ecodes.EV_KEY:
-            if event.code == ecodes.ecodes['KEY_ESC']:
-                # steer center
-                if tank is not Nonde:
-                    tank.center()
-            elif event.code == ecodes.ecodes['KEY_VOLUMEUP']:
-                # Show battery
-                pass # button D was selected
-            elif event.code == ecodes.ecodes['KEY_VOLUMEDOWN']:
-                # Show lights/speed
-                pass # button C was selected
-        elif event.type == ecodes.EV_BTN:
-            if event.code == ecodes.ecodes['BTN_LEFT']:
-                # toggles turbo / eco mode
-                # Need to check for value going to 1 and then to 0 and then changing turbo
-                if tank is not Nonde:
-                    tank.turbo()
-        else:
-            pass
+        #####################################################
+        # Display Speed
+        ##################################################### 
 
-class TankDrive(object):
-    ###########
-    # Tank Drive
-    # speed: speed base 
-    # left_right:  left versus right -1..+1
-    # speed_Left:  set speed for left motor
-    # speed_Right: set speed for right motor
-    ###########
-
-    def __init__(self):
-        self.MAXUPDOWN     = 7  # max joystick value, needs to be postive
-        self.MINUPDOWN     = -7 # min joystick value, needs to be negative
-        self.MAXLR         = 7 
-        self.MINLR         = -7 
-        self.SENS          = 1.5 # non linear joystick sensitivity
-        self.MAX_SPEED     =  30 # max speed value
-        self.MIN_SPEED     = -30
-        self.MAX_RATIO     =  1.
-        self.MIN_RATIO     = -1.
-        self.SPEED_GAIN    = 0.1 # how fast to increase/decrease speed
-        self.RATIO_GAIN    = 0.1 # how fast to steer
-        self.speed         = 0   # set speed to zero
-        self.reatio        = 0   # set steering straight
-        self.speed_left    = 0   # set left & right zero
-        self.speed_right   = 0
-        self.eco           = True
-
-    def update(self, REL_X=0, REL_Y=0):
-        # Joystick conversion
-        # Will create values between -1 and 1
-        # non linear adjustments
-
-        if REL_Y < 0:
-            _up_down    = - (REL_Y/MINUPDOWN)^SENS # -1..1
-        else: 
-            _up_down    =   (REL_Y/MAXUPDOWN)^SENS
-        if REL_X < 0:
-            _left_right = - (REL_X/MINLR)^SENS     # -1..1
-        else:
-            _left_right =   (REL_X/MAXLR)^SENS     # -1..1
-
-        # Set speed will be adjusted incrementally by joystick value
-        # Speed is clamped
-        self.speed   += (self.SPEED_GAIN * _up_down)
-        self.speed = clamp(self.speed, self.MIN_SPEED, self.MAX_SPEED)
-
-        # Left-Right ratio
-        self.ratio  += (self.RATIO_GAIN * left_right)
-        self.ratio = clamp(self.ratio, self.MIN_RATIO, self.MAX_RATIO)
-
-        # Left versus right motor
-        # if ratio is -1 left motor is 0 and right motor is 2 * speed
-        self.speed_left  = self.speed + self.speed *self.ratio
-        self.speed_right = self.speed - self.speed *self.ratio
-
-    def turbo(self):
-        if self.eco:
-            self.eco=True
-            self.SPEED_GAIN = 0.2
-        else:
-            self.eco=False
-            self.SPEED_GAIN = 0.1
-
-    def center(self):
-        self.ratio = 0
+        if DISPLAY:        
+            hor = ['Left', 'Right']
+            ver = [tank.speed_left, tank.speed_right]
+            fig.cla()
+            fig.bar(hor, ver)
+            fig.show(block=False)
+            
