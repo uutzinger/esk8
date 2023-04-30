@@ -81,7 +81,7 @@ Using EC5 for battery and 4mm bullet plug for motors
 Alixpress 2.4GHz with receiver  
 
 **Batteries**  
-78 x 18650 Molicel P26A, 2600mAh 35A
+78 x 18650 Molicel P26A, 2600mAh 35A, 6Amp max charge
 Nickel strips
 13S6P
 
@@ -317,7 +317,7 @@ Silicone insulated wire with 200C temperature rating.
 
 Simple approximation for current is **A[mm2]x25**. A slighltly better one **(D[mm]x39)^2 / 80**
 
-Single core to multicore up to 0.33..0.5 factor current reduction  
+Single core to multicore up to 0.33..0.5 factor current reduction.  
 
 Resistivity of Copper 1.68 10^-8 
 Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7
@@ -340,7 +340,7 @@ Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7
 | 8mm bullet | 200 | | 8 | 4
 | Anderson SB50  | 120 | | | 16mm
 | Anderson SB120 | 240 | | | 1
-! Anderson SB175 | 280 | | | 0/1
+| Anderson SB175 | 280 | | | 0/1
 | Anderson SB350 | 500 |
 | Anderson PowerPole 10 | | | |14-16
 | Anderson PowerPole 15 | 55 | | |10-20
