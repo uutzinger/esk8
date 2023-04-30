@@ -114,6 +114,16 @@ The number 6374 is the diameter and length of the motor in [mm].
 * 192KV Turnigy SK8,12S,      100A, 4400W, 8mm shaft, M4 44mm blot hole spacing, 12S, sensored $97
 * 149KV Turnigy SK8,           80A, 3500W, 8mm shaft, M4 44mm blot hole spacing, 12S, sensored $97 89mm long plus 38mm shaft
 
+Sensor wire. 
+'''. 
+Red V++
+Temp
+Hall1
+Hall2
+Hall3
+Black GND
+'''. 
+
 ### [DIYElectricSkateboard 6374](https://diyelectricskateboard.com/products/electric-skateboard-motor-6374-190kv)
 * 190KV 80A, 3150W, 8mm, 12S, sensored, $120
 * 6380 170KV 80A, 4100W, 8mm, 12S, sensored, $135
