@@ -46,7 +46,7 @@ https://electric-skateboard.builders/
 ---
 ## Design and Part Selection
 ---
-The design should be 40A sustainedand and 100A for 5-10 sec per motor. For two motors that is 80A sustained and 200A max current.
+The design should be 40A sustained and 100A for 5-10 sec per motor. For two motors that is 80A sustained and 200A max current.
 
 **ESC**  
 ODrive: 56V, 120A peak per motor and 40A will increase temperature of controller to 70-80C. The 6374 motors have max current of 70-100A. 
@@ -55,7 +55,7 @@ ODrive: 56V, 120A peak per motor and 40A will increase temperature of controller
 192KV Turnigy SK8: 100A, 12cells, 4400W 
 
 **Trucks**  
-Kingpin type from eskatebuilder, 370mm with montor mount 64mm, 
+Kingpin type from eskatebuilder, 370mm with motor mount 64mm, 
 
 **Wheels**  
 160mm all-terrain tire kit from diyelectricskateboard.com   
@@ -158,7 +158,7 @@ $16.75
 
 ---
 ## Deck
-* [eskatebuilder](https://eskatebuilder.com/product/flexible-deck/)
+* [eskatebuilder](  /product/flexible-deck/)
 * https://www.volokno-esk8.ru/
 
 Grip Tape: http://amzn.to/2ieljO9
