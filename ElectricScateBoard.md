@@ -52,7 +52,7 @@ The design should be 40A sustained and 100A for 5-10 sec per motor. For two moto
 ODrive: 56V, 120A peak per motor and 40A will increase temperature of controller to 70-80C. The 6374 motors have max current of 70-100A. 
 
 **Motors**  
-192KV Turnigy SK8: 100A, 12cells, 4400W 
+192KV Turnigy SK8: 100A, 12cells, 4400W, 14 poles
 
 **Trucks**  
 Kingpin type from eskatebuilder, 370mm with motor mount 64mm, 
@@ -115,14 +115,31 @@ The number 6374 is the diameter and length of the motor in [mm].
 * 149KV Turnigy SK8,           80A, 3500W, 8mm shaft, M4 44mm blot hole spacing, 12S, sensored $97 89mm long plus 38mm shaft
 
 Sensor wire. 
-'''. 
-Red V++
-Temp
-Hall1
-Hall2
-Hall3
-Black GND
-'''. 
+'''
+- Red V++
+- Blu Temp
+- Grn Hall1 - ODrive Hall A
+- Wht Hall2 - ODrive Hall B
+- Brw Hall3 - ODrive Hall Z
+- Blk GND
+'''
+
+Thermistor 10k?
+10k in series with 3.3k and 2.2uF capacitor over 3.3k. 3.3k to ground measure midpoint.
+
+Hall sensors need uF to GND
+
+'''
+SK8 6374, 192KV 14P
+14 Poles
+100A 4440W
+Idle Current 1.8A
+9-12S LiPo
+44mm, M4, 8mm Shaft
+Plug pin 4mm
+Resistance 24mH
+Max Voltage 45V
+'''
 
 ### [DIYElectricSkateboard 6374](https://diyelectricskateboard.com/products/electric-skateboard-motor-6374-190kv)
 * 190KV 80A, 3150W, 8mm, 12S, sensored, $120
@@ -197,10 +214,11 @@ Grip Tape: http://amzn.to/2ieljO9
 ### ESC
 An electronic speed control is needed for DC motors.
 
-* [odrive](https://odriverobotics.com/) 56V, 2x120A peak, $149
+* [odrive](https://odriverobotics.com/) 56V, 2x120A peak, $149, $279
 * [trampa](https://trampaboards.com/vesc--c-1434.html) vesc 6mk, 60V 100A, 75/300 and 100/250, $236 for single motor
 * [maytech](https://maytech.cn/) MTVESC50A 50A 12S, $55, 100A 12S $165, 50A dual $177
 * Unity [FocBox AliExpress](https://www.aliexpress.com/item/4000834490546.html?spm=a2g0o.detail.1000014.29.936639d8J5EdAo&gps-id=pcDetailBottomMoreOtherSeller&scm=1007.14976.158757.0&scm_id=1007.14976.158757.0&scm-url=1007.14976.158757.0&pvid=1db38406-09ba-49c5-b953-4eab00dbb4d9&_t=gps-id:pcDetailBottomMoreOtherSeller,scm-url:1007.14976.158757.0,pvid:1db38406-09ba-49c5-b953-4eab00dbb4d9,tpp_buckets:668%230%23131923%2320_668%23808%234093%23864_668%23888%233325%2312_4976%230%23158757%230_4976%232711%237538%23261_668%232846%238111%23436_668%232717%237559%2337), 50V, 160A continous, 300A max, $250
+
 
 ### Main Switch and Charging Port
 
