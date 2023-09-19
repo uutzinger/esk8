@@ -37,19 +37,23 @@ Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7 [Ohm m] (10 times less)
 -----
 | Name  | Current [A]| Burst [A] | Connector Diameter [mm] | Wire Cup [AWG] / [mm] |
 |-------|---------|-------|--------------------|--------------| 
+| **JST** | |  |  |  |
 | JST PH| 1-2 | 10  | | 32-24
+| **Xt** | | | | |
 | XT90  | 90  | 180 | 4.5 | 8/8mm
 | XT60  | 60  | 120 | 3.5 | 12/3mm |
 | XT30  | 30  | 60  | 2 | 16/1.5mm |
+| **EC** | | | | |
 | EC5   | 120 | 150 | 5 |  8-10 / 4.77mm
 | EC3   | 60  | 75  | 3.5| 12/3.5mm
 | EC2   | 20  | 30  | | 16
+| **Bullet** | | | | |
 | 2mm bullet | 25 || 2 | 20
 | 3mm bullet | 50 || 3 | 18
 | 4mm bullet | 70-100  | | 4 | 13-16
 | 6mm bullet | 120-140 | | 6 | 10
 | 8mm bullet | 200 | | 8 | 4
-| *Anderson Type*
+| **Anderson Type** 
 | SB50  | 50(120) | | | 1-6
 | SB120 | 130(240) | | | 10-1 
 | SB175 | 175(280) | | | 12-0/1
