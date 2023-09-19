@@ -37,7 +37,7 @@ Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7 [Ohm m] (10 times less)
 | Name  | Current [A]| Burst [A] | Connector Diameter [mm] | Wire Cup [AWG] / [mm] |
 |-------|---------|-------|--------------------|--------------| 
 | **JST** https://en.wikipedia.org/wiki/JST_connector
-| JST SH| 1 |   | 1mm pitch | 32-28
+| JST SH (QWIIC)| 1 |   | 1mm pitch | 32-28
 | JST GH| 1 |   | 1.25 | 30-26
 | JST ZH| 1 |   | 1.5 | 32-26
 | JST PH| 2 |   | 2 | 32-24
