@@ -21,8 +21,8 @@ Silicone insulated wire with 200C temperature rating.
 | 28| 0.32| 0.08| 213 |  1.9|    |   6|
 | 30| 0.26| 0.051|339 |  1.3|    |   4|
 
-Simple approximation for current is **A[mm2]x25**.   
-A slighltly better one **(D[mm]x39)^2 / 80**
+Simple approximation for current is **A[mm2]x25** [1].   
+A slighltly better one **(D[mm]x39)^2 / 80** [2]
 
 Single core to multicore up to 0.33..0.5 factor current reduction.  
 
