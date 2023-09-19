@@ -62,11 +62,17 @@ Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7 [Ohm m] (10 times less)
 | PowerPole 180 | 350 | | | 3/0
 
 ## Xt
+----
+
 ![Xt90](xt90.jpg)
 ![Xt60](xt60.jpg)
 ![Xt30](xt30.jpg)
 ## EC
+----
+
 ![EC5](EC5.jpg)
 ![EC3](ec3.jpg)
+
 ## Anderson
+----
 ![Anderson](Anderson-SB-Plug-Sizes.jpg)
