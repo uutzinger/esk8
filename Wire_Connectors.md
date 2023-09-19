@@ -21,8 +21,7 @@ Silicone insulated wire with 200C temperature rating.
 | 28| 0.32| 0.08| 213 |  1.9|    |   6|
 | 30| 0.26| 0.051|339 |  1.3|    |   4|
 
-Simple approximation for current is **A[mm2]x25** [1].   
-A slighltly better one **(D[mm]x39)^2 / 80** [2]
+Simple approximation for current is **A[mm2]x25** [1].  A slighltly better one **(D[mm]x39)^2 / 80**
 
 Single core to multicore up to 0.33..0.5 factor current reduction.  
 
@@ -37,8 +36,16 @@ Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7 [Ohm m] (10 times less)
 -----
 | Name  | Current [A]| Burst [A] | Connector Diameter [mm] | Wire Cup [AWG] / [mm] |
 |-------|---------|-------|--------------------|--------------| 
-| **JST**
-| JST PH| 1-2 | 10  | | 32-24
+| **JST** https://en.wikipedia.org/wiki/JST_connector
+| JST SH| 1 |   | 1mm pitch | 32-28
+| JST GH| 1 |   | 1.25 | 30-26
+| JST ZH| 1 |   | 1.5 | 32-26
+| JST PH| 2 |   | 2 | 32-24
+| JST PA| 3 | 10  | 2 | 32-24
+| JST XA| 3 |   | 2.5 | 32-24
+| JST EH| 3 |   | 2.5 | 32-24
+| JST RE| 2 |   | 2.54 | 32-24
+| JST VH| 10 |  | 3.96 | 32-24
 | **XT**
 | XT90  | 90  | 180 | 4.5 | 8/8mm
 | XT60  | 60  | 120 | 3.5 | 12/3mm |
