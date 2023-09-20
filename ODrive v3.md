@@ -16,6 +16,12 @@ Update firmware
 odrivetool dfu
 ``````
 
+## Automated Config
+```
+git clone https://github.com/AustinOwens/odrive_config.git
+```
+You will need to edit this.
+
 ## Setup Motor
 Order of the three plugs is not relevant. You can swap two wires for motor direction to go backwards.
 
@@ -37,7 +43,7 @@ odrv0.config.dc_max_negative_current = -36
 odrv0.axis0.motor.config.current_lim = 20                     # 10Amp for safety, 60A default, max Motor Wattage / Battery Nominal
 odrv0.axis0.controller.config.vel_limit = 2                  # turns per second
 # [depends on battery]
-odrv0.axis0.motor.config.pole_pairs = 7                       # pole pairs devided by 2
+odrv0.axis0.motor.config.pole_pairs = 7                       # pole pairs divided by 2
 odrv0.axis0.motor.config.torque_constant = 8.27 / 192         # [192kV]
 odrv0.axis0.motor.config.motor_type = MOTOR_TYPE_HIGH_CURRENT # 0
 ```
@@ -131,13 +137,13 @@ odrv0.save_configuration()
 ```
 GND   - V+      : 10MOhm
 GND   - Temp    : 9.52KOhm @ RT
-Temp  - V+      : 10MOhm
+Temp  - V+      : 10MOhm NEED TO VERIFY
 Hall1 - GND/Vcc : Inf
 Hall2 - GND/Vcc : Inf
 Hall3 - GND/Vcc : Inf
 ```
 
-On ODrive Hall1,2,3 3.3kOhm pull up to VCC 3.3V
+On ODrive Hall 1,2,3 3.3kOhm pull up to VCC 3.3V
 
 **Hall Effect** current flows through strip, magnetic field pernedicular to strop deflect current through strip to one side so that there is voltage difference from one to the other side of the strip. This is amplified to produce output voltage.
 Therefor Hall sensor has positiv & negative powers supply input and signal output. 
@@ -325,8 +331,8 @@ Therm 2 GPIO2 (Pin 12)
 ```
 
 ```
-set_motor_thermistor_coeffs(odrv0.axis0,3300, 10000, 3950, 100, 120)
-set_motor_thermistor_coeffs(odrv0.axis1,3300, 10000, 3950, 100, 120)
+set_motor_thermistor_coeffs(odrv0.axis0,10000, 10000, 3950, 100, 120)
+set_motor_thermistor_coeffs(odrv0.axis1,10000, 10000, 3950, 100, 120)
 odrv0.config.gpio1_mode = GPIO_MODE_ANALOG_IN
 odrv0.config.gpio2_mode = GPIO_MODE_ANALOG_IN
 odrv0.config.gpio3_mode = GPIO_MODE_ANALOG_IN
