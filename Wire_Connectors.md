@@ -63,8 +63,8 @@ Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7 [Ohm m] (10 times less)
 | **Anderson SB** 
 | SB50  | 50(120) | | | 1-6 | 600V
 | SB120 | 130(240) | | | 10-1 | 600V
-| SB175 | 175(280) | | | 12-0/1 |  600V
-| SB350 | 500 | | | | |  600V
+| SB175 | 175(280) | | | 12-0/1 | 600V
+| SB350 | 500      | | |        | 600V
 | **Anderson Powerpole**
 | PowerPole 10 | | | |14-16 |
 | PowerPole 15 | 55 | | |10-20 |
