@@ -25,8 +25,8 @@ Simple approximation for current is **A[mm2]x25** [1].  A slighltly better one *
 
 Single core to multicore up to 0.33..0.5 factor current reduction.  
 
-Resistivity of Copper 1.68 10^-8  [Ohm m]  
-Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7 [Ohm m] (10 times less)  
+Resistivity of Copper 1.68 10~-8~  [Ohm m]  
+Resistivity of Solder 63% Pb 37% Sn 1.65 10~-7~ [Ohm m] (10 times less)  
 
 * [1] https://sparks.gogo.co.nz/silicone-wire-current-capacity.html
 * [2] https://www.4-max.co.uk/silicone-wire.htm
