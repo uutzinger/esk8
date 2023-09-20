@@ -34,44 +34,44 @@ Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7 [Ohm m] (10 times less)
 
 ## Connectors 
 -----
-| Name  | Current [A]| Burst [A] | Connector Diameter [mm] | Wire Cup [AWG] / [mm] |
-|-------|---------|-------|--------------------|--------------| 
+| Name  | Current [A]| Burst [A] | Connector Diameter [mm] | Wire Cup [AWG] / [mm] | Max Voltage |
+|-------|---------|-------|--------------------|--------------|---|
 | **JST** https://en.wikipedia.org/wiki/JST_connector
-| JST SH (QWIIC)| 1 |   | 1mm pitch | 32-28
-| JST GH| 1 |   | 1.25 | 30-26
-| JST ZH| 1 |   | 1.5 | 32-26
-| JST PH| 2 |   | 2 | 32-24
-| JST PA| 3 | 10  | 2 | 32-24
-| JST XA| 3 |   | 2.5 | 32-24
-| JST EH| 3 |   | 2.5 | 32-24
-| JST RE| 2 |   | 2.54 | 32-24
-| JST VH| 10 |  | 3.96 | 32-24
-| **XT**
-| XT90  | 90  | 180 | 4.5 | 8/8mm
-| XT60  | 60  | 120 | 3.5 | 12/3mm |
-| XT30  | 30  | 60  | 2 | 16/1.5mm |
+| JST SH (QWIIC)| 1 |   | 1mm pitch | 32-28 | 50V
+| JST GH| 1 |   | 1.25 | 30-26 | 50V
+| JST ZH| 1 |   | 1.5 | 32-26 | 50V
+| JST PH| 2 |   | 2 | 32-24 | 100V
+| JST PA| 3 | 10  | 2 | 32-24 | 250V
+| JST XA| 3 |   | 2.5 | 32-24 | 250V
+| JST EH| 3 |   | 2.5 | 32-24 | 250V
+| JST RE| 2 |   | 2.54 | 32-24 | 250V
+| JST VH| 10 |  | 3.96 | 32-24 | 250V
+| **XT** yellow battery
+| XT90  | 90  | 180 | 4.5 | 8/8mm | 500V
+| XT60  | 60  | 120 | 3.5 | 12/3mm | 500V
+| XT30  | 30  | 60  | 2 | 16/1.5mm | 500V
 | **EC**
-| EC5   | 120 | 150 | 5 |  8-10 / 4.77mm
-| EC3   | 60  | 75  | 3.5| 12/3.5mm
-| EC2   | 20  | 30  | | 16
-| **Bullet**
-| 2mm bullet | 25 || 2 | 20
-| 3mm bullet | 50 || 3 | 18
-| 4mm bullet | 70-100  | | 4 | 13-16
-| 6mm bullet | 120-140 | | 6 | 10
-| 8mm bullet | 200 | | 8 | 4
-| **Anderson** 
-| SB50  | 50(120) | | | 1-6
-| SB120 | 130(240) | | | 10-1 
-| SB175 | 175(280) | | | 12-0/1
-| SB350 | 500 |
-| **Powerpole**
-| PowerPole 10 | | | |14-16
-| PowerPole 15 | 55 | | |10-20
-| PowerPole 30 | | | | 10
-| PowerPole 75 | 120 | | | 6-16 
-| PowerPole 120 | 240 | | | 8
-| PowerPole 180 | 350 | | | 3/0
+| EC5   | 120 | 150 | 5 |  8-10 / 4.77mm |
+| EC3   | 60  | 75  | 3.5| 12/3.5mm |
+| EC2   | 20  | 30  | | 16 
+| **Bullet** blue battery
+| 2mm bullet | 25 | | 2 | 20 | depends on molding, shrinktubing
+| 3mm bullet | 50 | | 3 | 18 | up to 600V
+| 4mm bullet | 70-100  | | 4 | 13-16 |
+| 6mm bullet | 120-140 | | 6 | 10 |
+| 8mm bullet | 200 | | 8 | 4 |
+| **Anderson SB** 
+| SB50  | 50(120) | | | 1-6 | 600V
+| SB120 | 130(240) | | | 10-1 | 600V
+| SB175 | 175(280) | | | 12-0/1 |  600V
+| SB350 | 500 | | | | |  600V
+| **Anderson Powerpole**
+| PowerPole 10 | | | |14-16 |
+| PowerPole 15 | 55 | | |10-20 |
+| PowerPole 30 | | | | 10 |
+| PowerPole 75 | 120 | | | 6-16 | 
+| PowerPole 120 | 240 | | | 8 |
+| PowerPole 180 | 350 | | | 3/0 |
 
 ## **XT**
 ----
