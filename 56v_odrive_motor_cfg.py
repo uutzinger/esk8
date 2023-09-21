@@ -117,8 +117,8 @@ class MotorConfig:
     # Max Speed 60km/h = 1000m/min = 16.67m/s 
     # Wheel diameter 0.147m => circumference is 0.147m * 3.141 = 0.462m
     # 16.67m/s / 0.462m = 36 rev/s
-    VEL_LIMIT = 5 # 40 regular, for calibration use 5
-    POS_GAIN = 6 # 20 default, for anticogging caliobration the gain should be large like 200.0
+    VEL_LIMIT = 40 # 40 regular, for calibration use 5
+    POS_GAIN = 200. # 20 default, for anticogging calibration the gain should be large like 200.0
     VEL_GAIN = 0.02 # 0.02 default, 0.02 for hoverboard
     VEL_INTEGRATOR_GAIN = 0.1 # 0.1 default, 0.1 for hoverboard
     CONTROL_MODE = CONTROL_MODE_VELOCITY_CONTROL
@@ -393,7 +393,7 @@ class MotorConfig:
         while self.odrv_axis.controller.config.anticogging.calib_anticogging:
             time.sleep(15)
             i = i + 1
-            print("Still calibrating anticogging: {%.2f} mins".format(i*15./60.), end="\r", flush = True)
+            print("Still calibrating anticogging: {:>4.2f} mins".format(i*15./60.), end="\r", flush = True)
 
         if self.odrv_axis.motor.error != 0:
             print(
