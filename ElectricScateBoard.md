@@ -124,21 +124,32 @@ Sensor wire.
 - Blk GND
 '''
 
-Thermistor 10k?
-10k in series with 3.3k and 2.2uF capacitor over 3.3k. 3.3k to ground measure midpoint.
+Hall sensor pulls output to ground.
+Supply votlage 3.3 to 5V. VESEC has switch to select. ODrive eitehr 5V or VCC.
+On ODrive Hall output is pulled high with 3.3k resitor (2k2 on VESEC).
+Hall sensors need 22-47nF to GND to supress noise.
+Can turn off invalid Hall state in ODrive software.
 
-Hall sensors need uF to GND
+Thermistor is 10k Thermisotor
+Pull high to VCC and place capcitor to ground. VESEC: 10k and 100nF, ODrive 3.3k and 2.2uF
 
 '''
-SK8 6374, 192KV 14P
+Turnigy SK8 6374-192KV Sensored Brushless Motor (14P)
 14 Poles
-100A 4440W
+100A, 4440W
 Idle Current 1.8A
 9-12S LiPo
-44mm, M4, 8mm Shaft
+24MΩ Resistance
+44mm bolt hole spacing, M4, 8mm Shaft
 Plug pin 4mm
 Resistance 24mH
 Max Voltage 45V
+940gr
+4.0 banana Gold plug
+Length w/ hubs B w/o shaft: 80.7mm
+Can Diameter C: 61.0mm
+Can Length D: 67.0mm
+Total Shaft Length E: 126.7mm
 '''
 
 ### [DIYElectricSkateboard 6374](https://diyelectricskateboard.com/products/electric-skateboard-motor-6374-190kv)
