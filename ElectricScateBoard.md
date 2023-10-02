@@ -115,14 +115,12 @@ The number 6374 is the diameter and length of the motor in [mm].
 * 149KV Turnigy SK8,           80A, 3500W, 8mm shaft, M4 44mm blot hole spacing, 12S, sensored $97 89mm long plus 38mm shaft
 
 Sensor wire. 
-'''
 - Red V++
 - Blu Temp
 - Grn Hall1 - ODrive Hall A
 - Wht Hall2 - ODrive Hall B
 - Brw Hall3 - ODrive Hall Z
 - Blk GND
-'''
 
 Hall sensor pulls output to ground.
 Supply votlage 3.3 to 5V. VESEC has switch to select. ODrive eitehr 5V or VCC.
