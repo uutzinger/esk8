@@ -131,7 +131,7 @@ Can turn off invalid Hall state in ODrive software.
 Thermistor is 10k Thermisotor
 Pull high to VCC and place capcitor to ground. VESEC: 10k and 100nF, ODrive 3.3k and 2.2uF
 
-'''
+```
 Turnigy SK8 6374-192KV Sensored Brushless Motor (14P)
 14 Poles
 100A, 4440W
@@ -148,7 +148,7 @@ Length w/ hubs B w/o shaft: 80.7mm
 Can Diameter C: 61.0mm
 Can Length D: 67.0mm
 Total Shaft Length E: 126.7mm
-'''
+```
 
 ### [DIYElectricSkateboard 6374](https://diyelectricskateboard.com/products/electric-skateboard-motor-6374-190kv)
 * 190KV 80A, 3150W, 8mm, 12S, sensored, $120
