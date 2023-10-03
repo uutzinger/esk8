@@ -14,6 +14,7 @@ Torque Calculation: Troque [Nm] = 3/2/(sqrt(3)*(1/60)*2*3.141) * MaxCurrent / Kv
 * Turnigy SK3: 8.3*80/192 = 3.4Nm
 
 [VSEC calcuator](https://vesc-project.com/calculators)
+
 Tire diameter 160  
 Motor pulley 16  
 Slave 62  
@@ -29,12 +30,13 @@ Weigth 130kg
 
 ## Websites and Resources
 * Trampa Boards https://trampaboards.com/ many components, 406mm tilted end boards
-* Haggy Board https://haggyboard.com 340mm/210 flat board
 * Build Kit Boards https://buildkitboards.com compact
 * DIYEBoard http://www.diyeboard.com
 * MBS https://www.mbs.com/parts 411mm trucks for tilted end board
 * meepoboard https://www.meepoboard.com 245&265 (200mm) for flat board
 * Evolve https://evolveskateboardsusa.com/ flat board, complete systems
+* Baja Board https://www.bajaboard.com.au/, complete systems
+* Propel https://www.ridepropel.com/, complete systems
 * DIY electric skate board https://diyelectricskateboard.com flat boards
 * Benchwheel https://benchwheel.com compact boards
 * Build Kit https://buildkitboards.com compact
@@ -49,7 +51,7 @@ https://electric-skateboard.builders/
 The design should be 40A sustained and 100A for 5-10 sec per motor. For two motors that is 80A sustained and 200A max current.
 
 **ESC**  
-ODrive: 56V, 120A peak per motor and 40A will increase temperature of controller to 70-80C. The 6374 motors have max current of 70-100A. 
+ODrive: 56V, 120A peak per motor. 40A will increase temperature of controller to 70-80C. The 6374 motors have max current of 70-100A. 
 
 **Motors**  
 192KV Turnigy SK8: 100A, 12cells, 4400W, 14 poles
@@ -67,18 +69,19 @@ Extra
 slot key 3x3mm, 8mm bore
 
 **BMS**  
-Daligreen 80A, 250A over discharge, 13S, separate
+Daligreen 80A, 250A over discharge, 13S
 
 **Wiring**  
-Battery to BMS 8AWG  
-BME to odrive 8AWG
-Odrive to motor 10-12AWG
+Battery to ODrive 8AWG  
+Charging Connector to BMS 8AWG ?
+Odrive to motor 12AWG
+Break Resitor 12AWG
 
 **Connectors**  
-Using EC5 for battery and 4mm bullet plug for motors
+Using 8mm short bullet plugs for battery and 4mm bullet plug for motors
 
 **Remote**  
-Alixpress 2.4GHz with receiver  
+Samsung gear BLE to Raspi, custom software
 
 **Batteries**  
 78 x 18650 Molicel P26A, 2600mAh 35A, 6Amp max charge
