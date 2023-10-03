@@ -2,11 +2,12 @@
 
 ## References
 
-* ‎octopart.com
+* ‎Find the parts: https://octopart.com
+* The switch: https://github.com/vedderb/SparkSwitch
+* The simulation of the switch: https://www.multisim.com/content/NLP7B94HVyqndpwCyjrKdE/vedder-anti-spark-switch
+* https://github.com/msglazer/Anti-Spark_Switch
 * https://endless-sphere.com/forums/viewtopic.php?f=3&t=40142&start=100
 * https://www.youtube.com/watch?v=UdzIOw9pgfw
-* https://github.com/msglazer/Anti-Spark_Switch
-* https://github.com/vedderb/SparkSwitch
 
 ## FET 60V - 240A
 Power MOSFET N Channel
