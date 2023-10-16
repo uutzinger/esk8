@@ -149,23 +149,23 @@ On ODrive Hall 1,2,3 3.3kOhm pull up to VCC 3.3V
 Therefor Hall sensor has positiv & negative powers supply input and signal output. 
 
 
-| **M0** |     |              |
-| --     | --  | --           | 
-| Pin  1 | VCC | 3.3V  M0     | 
-| Pin  2 |     | Not Connected| 
-| Pin  3 | A   | Hall 1 M0    | 
-| Pin  4 | B   | Hall 2 M0    | 
-| Pin  5 | Z   | Hall 3 M0    | 
-| Pin  6 | GND | GND M0       | 
-
 | **M1** |     |              |
 | --     | --  | --           | 
-| Pin  7 | VCC | 3.3V M1      | 
-| Pin  8 |     | Not Connected|  
-| Pin  9 | A   | Hall 1 M1    | 
-| Pin 10 | B   | Hall 2 M1    | 
-| Pin 11 | Z   | Hall 3 M1    | 
-| Pin 12 | GND | GND M1       | 
+| Pin  1 | VCC | 3.3V  M1     | 
+| Pin  2 | N.C.|   5V  M1     | 
+| Pin  3 | A   | Hall 1 M1    | 
+| Pin  4 | B   | Hall 2 M1    | 
+| Pin  5 | Z   | Hall 3 M1    | 
+| Pin  6 | GND | GND M1       | 
+
+| **M0** |     |              |
+| --     | --  | --           | 
+| Pin  7 | VCC | 3.3V M0      | 
+| Pin  8 | N.C.|   5V M0      |  
+| Pin  9 | A   | Hall 1 M0    | 
+| Pin 10 | B   | Hall 2 M0    | 
+| Pin 11 | Z   | Hall 3 M0    | 
+| Pin 12 | GND | GND M0       | 
 
 **Need to add 22nF bypass capacitors between Hall pin and GND.**
 
@@ -315,24 +315,51 @@ odrv0.axis0.encoder.config.cpr   # must reflect th counts after one full turn
 ```
 
 ## Setup Thermistors
-On PCB
-```
-AVCC - 10kThermistor - 3.3k - AGND
-2.2uF Cap over 3.3k
-```
+On PCB we will need to connect power to motor thermistors and provide load resistor. Firmware computes temperature with 4 polynomial coefficients. Its not possible to be accurate in the range of 100 to 120C as well as at room temperature with 4 coefficients.
 
-Analog input for ODrive 0..3.3V
+I fit the resistors to a temperature range of 50..150 and accept that at 25C it will report negative numbers but it will be accurate when determining higher temperatures that can burn the user.
+
+By reading ADC voltage one can use the accurate exponential formula as shown below (Thermistor connected to GND) in the computer controlling the motor controller.
 
 ```
-AVCC (Pin 6)
-AGND (Pin 7)
-Therm 1 GPIO1 (Pin 11)
-Therm 2 GPIO2 (Pin 12)
+# Voltage to Temperature
+# ----------------------
+# Constants
+T_25 = 25 + 273.15
+r_inf = R_25 * np.exp(-Beta/T_25)
+# V measured
+R = (V_measured/Vcc * Rload) / (1. - V_measured/Vcc)
+from math import log
+T = Beta / log(R/r_inf) - 273.15
+```
+
+### Setup
+```
+3.3V ---- 
+        |
+   10kOhm Resistor 
+        |
+ measurement point -----
+        |              |
+   10kThermistor     2.2uF capacitor
+        |              |
+GND (on Hall Sensor) ---
+
+```
+Analog input for ODrive is 0..3.3V.
+At room temperature measured voltage should be approx 1.65 V
+
+```
+3.3V on J4
+GND on J4
+Therm 1 GPIO1 on J3 (Pin 11)
+Therm 2 GPIO2 on J3 (Pin 12)
 ```
 
 ```
-set_motor_thermistor_coeffs(odrv0.axis0,10000, 10000, 3950, 100, 120)
-set_motor_thermistor_coeffs(odrv0.axis1,10000, 10000, 3950, 100, 120)
+# Load Resistor, Thermistor @ 25C, beta , T_min (for fit), T_max (for fit)
+set_motor_thermistor_coeffs(odrv0.axis0,10000, 10000, 3950, 50, 150)
+set_motor_thermistor_coeffs(odrv0.axis1,10000, 10000, 3950, 50, 150)
 odrv0.config.gpio1_mode = GPIO_MODE_ANALOG_IN
 odrv0.config.gpio2_mode = GPIO_MODE_ANALOG_IN
 odrv0.config.gpio3_mode = GPIO_MODE_ANALOG_IN
@@ -345,5 +372,57 @@ odrv0.get_adc_voltage(1)
 odrv0.get_adc_voltage(2)
 odrv0.get_adc_voltage(3)
 odrv0.get_adc_voltage(4)
+
+odrv0.axis0.motor.motor_thermistor 
+odrv0.axis1.motor.motor_thermistor
 ```
 
+### Program to display fit accuracy
+
+```
+Tmin = 50.
+Tmax = 150.
+R_25 = 10000.
+Rload = 10000.
+Beta = 3950.
+Vcc = 3.3
+thermistor_bottom = True
+plot = True
+degree = 3
+
+import numpy as np
+T_25 = 25 + 273.15 #Kelvin
+temps = np.linspace(Tmin, Tmax, 1000)
+temps_plt = np.linspace(Tmin-40, Tmax+40, 1000)
+tempsK = temps + 273.15
+tempsK_plt = temps_plt + 273.15
+
+# https://en.wikipedia.org/wiki/Thermistor#B_or_%CE%B2_parameter_equation
+r_inf = R_25 * np.exp(-Beta/T_25)
+R_temps = r_inf * np.exp(Beta/tempsK)
+R_temps_plt = r_inf * np.exp(Beta/tempsK_plt)
+
+if thermistor_bottom:
+    V = R_temps / (Rload + R_temps)
+    V_plt = R_temps_plt / (Rload + R_temps_plt)
+else:
+    V = Rload / (Rload + R_temps)
+    V_plt = Rload / (Rload + R_temps)
+
+fit = np.polyfit(V, temps, degree)
+p1 = np.poly1d(fit)
+fit_temps = p1(V_plt)
+
+if plot:
+    import matplotlib.pyplot as plt
+    print(fit)
+    # plt.plot(V_plt*Vcc, temps_plt, label='actual')
+    # plt.plot(V_plt*Vcc, fit_temps, label='fit')
+    plt.plot(temps_plt, fit_temps-temps_plt, label='error')
+    # plt.xlabel('normalized voltage')
+    plt.xlabel('Voltage')
+    plt.ylabel('Temp [C]')
+    plt.legend(loc=0)
+    plt.show()
+
+```
