@@ -1,5 +1,41 @@
 # Electric Skate Board esk8
 
+- [Electric Skate Board esk8](#electric-skate-board-esk8)
+  * [Design](#design)
+    + [Power and Speed](#power-and-speed)
+  * [Websites and Resources](#websites-and-resources)
+  * [Design and Part Selection](#design-and-part-selection)
+  * [Motors](#motors)
+    + [[Hobby King 6374](https://hobbyking.com/en_us/catalogsearch/result/?q=6374)](#-hobby-king-6374--https---hobbykingcom-en-us-catalogsearch-result--q-6374-)
+    + [[DIYElectricSkateboard 6374](https://diyelectricskateboard.com/products/electric-skateboard-motor-6374-190kv)](#-diyelectricskateboard-6374--https---diyelectricskateboardcom-products-electric-skateboard-motor-6374-190kv-)
+  * [Wheels](#wheels)
+    + [Haggyboard](#haggyboard)
+    + [DIYelectricSakteboard](#diyelectricsakteboard)
+    + [Evolve](#evolve)
+    + [Drive Gears](#drive-gears)
+    + [Motor Pulley](#motor-pulley)
+  * [Drive systems](#drive-systems)
+  * [Deck](#deck)
+  * [Trucks](#trucks)
+    + [HaggybBoard](#haggybboard)
+    + [Evolve](#evolve-1)
+    + [[eskatebuilder](https://eskatebuilder.com/product/double-kingpin-trucks/) same as Evolve trucks](#-eskatebuilder--https---eskatebuildercom-product-double-kingpin-trucks---same-as-evolve-trucks)
+    + [SURFRODZ](#surfrodz)
+  * [Bearings](#bearings)
+  * [Electronics](#electronics)
+    + [ESC](#esc)
+    + [Main Switch and Charging Port](#main-switch-and-charging-port)
+    + [Battery](#battery)
+      - [Nickel Strip Current Capacity](#nickel-strip-current-capacity)
+      - [Battery Holder](#battery-holder)
+    + [Battery Management System](#battery-management-system)
+    + [Battery Charger](#battery-charger)
+    + [Remote Control](#remote-control)
+  * [Deck](#deck-1)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 ## Design
 ### Power and Speed
 The Kv rating of a motor is the constant velocity of a motor without load. RPM = Kv x Voltage 
@@ -14,6 +50,7 @@ Torque Calculation: Troque [Nm] = 3/2/(sqrt(3)*(1/60)*2*3.141) * MaxCurrent / Kv
 * Turnigy SK3: 8.3*80/192 = 3.4Nm
 
 [VSEC calcuator](https://vesc-project.com/calculators)
+
 Tire diameter 160  
 Motor pulley 16  
 Slave 62  
@@ -29,12 +66,13 @@ Weigth 130kg
 
 ## Websites and Resources
 * Trampa Boards https://trampaboards.com/ many components, 406mm tilted end boards
-* Haggy Board https://haggyboard.com 340mm/210 flat board
 * Build Kit Boards https://buildkitboards.com compact
 * DIYEBoard http://www.diyeboard.com
 * MBS https://www.mbs.com/parts 411mm trucks for tilted end board
 * meepoboard https://www.meepoboard.com 245&265 (200mm) for flat board
 * Evolve https://evolveskateboardsusa.com/ flat board, complete systems
+* Baja Board https://www.bajaboard.com.au/, complete systems
+* Propel https://www.ridepropel.com/, complete systems
 * DIY electric skate board https://diyelectricskateboard.com flat boards
 * Benchwheel https://benchwheel.com compact boards
 * Build Kit https://buildkitboards.com compact
@@ -49,7 +87,7 @@ https://electric-skateboard.builders/
 The design should be 40A sustained and 100A for 5-10 sec per motor. For two motors that is 80A sustained and 200A max current.
 
 **ESC**  
-ODrive: 56V, 120A peak per motor and 40A will increase temperature of controller to 70-80C. The 6374 motors have max current of 70-100A. 
+ODrive: 56V, 120A peak per motor. 40A will increase temperature of controller to 70-80C. The 6374 motors have max current of 70-100A. 
 
 **Motors**  
 192KV Turnigy SK8: 100A, 12cells, 4400W, 14 poles
@@ -58,7 +96,7 @@ ODrive: 56V, 120A peak per motor and 40A will increase temperature of controller
 Kingpin type from eskatebuilder, 370mm with motor mount 64mm, 
 
 **Wheels**  
-160mm all-terrain tire kit from diyelectricskateboard.com   
+160mm all-terrain tire kit   
 2 x 410mm hdt5 15mm belt  
 2 x 62T HTD5 15mm drive wheel pulleys  
 1 x ABEC7 bearing set  
@@ -67,23 +105,24 @@ Extra
 slot key 3x3mm, 8mm bore
 
 **BMS**  
-Daligreen 80A, 250A over discharge, 13S, separate
+Daligreen 80A, 250A over discharge, 13S
 
 **Wiring**  
-Battery to BMS 8AWG  
-BME to odrive 8AWG
-Odrive to motor 10-12AWG
+Battery to ODrive 8AWG  
+Charging Connector to BMS 12AWG
+Odrive to motor 12AWG
+Break Resitor 12AWG
 
 **Connectors**  
-Using EC5 for battery and 4mm bullet plug for motors
+Using 8mm short bullet plugs for battery and 4mm bullet plug for motors
 
 **Remote**  
-Alixpress 2.4GHz with receiver  
+Samsung gear BLE to Raspi, custom software
 
 **Batteries**  
 78 x 18650 Molicel P26A, 2600mAh 35A, 6Amp max charge
 Nickel strips
-13S6P
+13S6P = 210A, 41.6-54.5V, 48 nominal, 36A max charging
 
 **Charger**  
 WATE 13S 54.6V 7A Charger 48V, Aliexpress
@@ -114,32 +153,39 @@ The number 6374 is the diameter and length of the motor in [mm].
 * 192KV Turnigy SK8,12S,      100A, 4400W, 8mm shaft, M4 44mm blot hole spacing, 12S, sensored $97
 * 149KV Turnigy SK8,           80A, 3500W, 8mm shaft, M4 44mm blot hole spacing, 12S, sensored $97 89mm long plus 38mm shaft
 
-Sensor wire. 
-'''
-- Red V++
+**Hall Sensor Wire** 
+- Red V++ (5V)
 - Blu Temp
 - Grn Hall1 - ODrive Hall A
 - Wht Hall2 - ODrive Hall B
 - Brw Hall3 - ODrive Hall Z
 - Blk GND
-'''
 
-Thermistor 10k?
-10k in series with 3.3k and 2.2uF capacitor over 3.3k. 3.3k to ground measure midpoint.
+Supply votlage 3.3 to 5V. VESEC has switch to select Vcc or 5V. ODrive eitehr 5V or VCC, examples use 5V.
+Hall sensor pulls output to ground. It has built in voltag regulator. On ODrive board, Hall output is pulled high (3.3V) with 3.3k resitor (2k2 on VESEC).
+Hall sensors need 22-47nF to GND to supress noise. Can turn off invalid Hall state in ODrive software (ignore_illegal_hall_state = True)
 
-Hall sensors need uF to GND
+Thermistor is 10k Thermisotor
+Pull high to VCC and place capcitor to ground. VESEC: 10k and 100nF, ODrive 3.3k and 2.2uF.
 
-'''
-SK8 6374, 192KV 14P
+```
+Turnigy SK8 6374-192KV Sensored Brushless Motor (14P)
 14 Poles
-100A 4440W
+100A, 4440W
 Idle Current 1.8A
 9-12S LiPo
-44mm, M4, 8mm Shaft
+24MΩ Resistance
+44mm bolt hole spacing, M4, 8mm Shaft
 Plug pin 4mm
 Resistance 24mH
 Max Voltage 45V
-'''
+940gr
+4.0 banana Gold plug
+Length w/ hubs B w/o shaft: 80.7mm
+Can Diameter C: 61.0mm
+Can Length D: 67.0mm
+Total Shaft Length E: 126.7mm
+```
 
 ### [DIYElectricSkateboard 6374](https://diyelectricskateboard.com/products/electric-skateboard-motor-6374-190kv)
 * 190KV 80A, 3150W, 8mm, 12S, sensored, $120
@@ -278,7 +324,7 @@ Ambient temperature  = 30°C
 Wire Temperature = 200°C (same as silicone wire)
 Heat Transfer = α x (T_a - T_0) * A = 25 x 170 x 0.008 = 34W/m
 
-Maximum current for equilibrium of heat genereated versys heat disipated:  
+Maximum current for equilibrium of heat genereated versus heat disipated:  
 I x I x Resistance = 34 W/m, solve for I  
 I = sqrt(34/R) = 24 A  
 
@@ -321,62 +367,6 @@ The BME is a battery protection circuit, lmiting under voltage, current overdraw
 
   * [ebay](https://www.ebay.com/itm/US-35A-BMS-PCB-PCM-Protection-Board-With-Balance-For-E-bike-Li-ion-Battery-13S/133417323146?hash=item1f104aca8a:g:wQQAAOSwPuFex6gT) 35A (100) $16
   
-
-### Wire
----
-Silicone insulated wire with 200C temperature rating.
-
-* [1] https://sparks.gogo.co.nz/silicone-wire-current-capacity.html
-* [2] https://www.4-max.co.uk/silicone-wire.htm
-* [3] https://www.multicable.com/resources/reference-data/current-carrying-capacity-of-copper-conductors/
-
-| AWG | D [mm] | A [mm2]| R [mO/m]| [A] [1] | [A] [2] | [A] [3]  | [A] burst |
-|-----|---|---|---|-----|-----|------|------|
-| 6 | 4.11| 13.26| 1.3| 321| -|    135|
-| 8 | 3.26| 8.37| 2.1| 209| 180| 100|  
-| 10| 2.59| 5.26| 3.3| 130| 120|  75|  250
-| 12| 2.05| 3.31| 5.2|  75|  70|  55|  160
-| 14| 1.63| 2.08| 8.3|  51|
-| 16| 1.29| 1.31| 13.2| 32|
-| 19| 0.91| 0.65|26.4|  16|
-| 22| 0.64| 0.32|  53| 7.8|
-| 26| 0.41| 0.13| 134| 3.2|
-| 28| 0.32| 0.08| 213| 1.9|
-
-Simple approximation for current is **A[mm2]x25**. A slighltly better one **(D[mm]x39)^2 / 80**
-
-Single core to multicore up to 0.33..0.5 factor current reduction.  
-
-Resistivity of Copper 1.68 10^-8 
-Resistivity of Solder 63% Pb 37% Sn 1.65 10^-7
-
-### Connectors 
------
-| Name  | Current | Burst | Connector Diameter | Wire Cup AWG |
-|-------|---------|-------|--------------------|--------------| 
-| JST PH| 1-2 | 10  | | 32-24
-| XT90  | 90  | 130 | | 8
-| XT60  | 60  | 180 | | 12 |
-| XT30  | 30  | 40  | | 16 |
-| EC5   | 120 | 150 | 5 |  8-10 4.77mm
-| EC3   | 60  | 75  | 3.5| 12
-| EC2   | 20  | 30  | | 16
-| 2mm bullet | 25 || 2 | 20
-| 3mm bullet | 50 || 3 | 18
-| 4mm bullet | 70-100  | | 4 | 13-16
-| 6mm bullet | 120-140 | | 6 | 10
-| 8mm bullet | 200 | | 8 | 4
-| Anderson SB50  | 120 | | | 16mm
-| Anderson SB120 | 240 | | | 1
-| Anderson SB175 | 280 | | | 0/1
-| Anderson SB350 | 500 |
-| Anderson PowerPole 10 | | | |14-16
-| Anderson PowerPole 15 | 55 | | |10-20
-| Anderson PowerPole 30 | | | | 10
-| Anderson PowerPole 75 | 120 | | | 6-16 
-| Anderson PowerPole 120 | 240 | | | 8
-| Anderson PowerPole 180 | 350 | | | 3/0
-
 ### Battery Charger
 ---
 
@@ -441,5 +431,4 @@ length total 4x108 + 65 + BMS + Odrive 2"  = 26"
 150mm shrink tubing clear PVC  
 
 Neoperene Rubber Sheets  
-1/16 1'x12'  
-
+1/16 1'x12'
